@@ -1,0 +1,38 @@
+package net.adsgames.laneswitcher;
+
+import java.io.*;
+import javazoom.jl.player.Player;
+
+public class MP3{
+  String filename;
+  Player player; 
+  
+  public MP3(String filename) {
+    this.filename = filename;
+  }
+  
+  public void close() { 
+    if (player != null) player.close(); 
+    System.out.println("Shut Down!");
+  }
+
+  // play the MP3 file
+  public void play() {
+    try {
+      InputStream bis = getClass().getResourceAsStream(filename);
+      player = new Player(bis);
+    }
+    catch (Exception e) {
+      System.out.println("Problem playing file " + filename);
+      System.out.println(e);
+    }
+    
+    // run in new thread to play in background
+    new Thread() {
+      public void run() {
+        try { player.play(); }
+        catch (Exception e) { System.out.println(e); }
+      }
+    }.start();
+  }
+}
