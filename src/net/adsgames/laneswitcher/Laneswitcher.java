@@ -137,8 +137,7 @@ public class Laneswitcher extends Applet implements Runnable, MouseListener, Mou
 
 		if (firstRun) {
 			exhaust = new Image[3];
-			System.out.println(this.getDocumentBase());
-			resize(appletsize_x, appletsize_y);
+			
 			exhaust[0] = getImage(this.getClass().getResource("img/exhaust1.png"));
 			exhaust[1] = getImage(this.getClass().getResource("img/exhaust2.png"));
 			exhaust[2] = getImage(this.getClass().getResource("img/exhaust3.png"));
@@ -181,6 +180,8 @@ public class Laneswitcher extends Applet implements Runnable, MouseListener, Mou
 			firstRun = false;
 
 			mp3 = new MP3Loader("/net/adsgames/laneswitcher/sound/music.mp3", true);
+			
+			resize(appletsize_x, appletsize_y);
 		}
 	}
 
